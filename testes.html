@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Organograma</title>
+        <script src="node_modules/@svgdotjs/svg.js/dist/svg.min.js"></script>
+        
+    </head>
+    <body>
+        
+        <svg id="drawing" width="300px" height="300px"></svg>
+        <input type="color" value = '#ff0000' oninput="mudaCor()" id="corRetangulo">
+        <label for="corRetangulo" id="pseudoColor"></label>
+    </body>
+
+    <style>
+        input{
+            opacity: 0;
+            border: 1px;
+            background-color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            box-shadow: green  10px 10px 10px;
+        }
+        #pseudoColor{
+            width: 20px;
+            height: 20px;
+            border: solid 1px black;
+            border-radius: 10px;
+            display: inline-block;
+            cursor: pointer;
+            background-color: red;
+        }
+    </style>
+
+
+    <script>
+        window.color = 'amarelo'
+
+        var draw = SVG().addTo('#drawing')
+        var rect = draw.rect(100, 100).move(50,50).fill('#ff0000').radius(10,10)
+        
+        rect.animate(2000).move(10,10).delay(100).animate(500).opacity(0.5)
+
+        rect.click(function(){
+            if(color == 'amarelo'){
+                this.fill('blue')
+                color = 'azul'
+            }else{  
+                this.fill('#ff0')
+                color = 'amarelo'
+            }
+            
+        })
+
+
+        function mudaCor(){
+            console.log('muda cor');
+            cor = document.getElementById('corRetangulo').value
+            document.getElementById('pseudoColor').style.backgroundColor = cor
+            rect.fill(cor).opacity(1)
+        }    
+    </script>
+</html>
