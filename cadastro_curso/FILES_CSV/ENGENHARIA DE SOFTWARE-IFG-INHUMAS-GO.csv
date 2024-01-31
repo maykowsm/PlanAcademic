@@ -1,0 +1,62 @@
+﻿semestre,id,ch,nome,dependencias
+1,1,54,Introdução a engenharia de software DPAAIN.389,
+8,2,27,Estatística Descritiva DPAAIN.429,15
+9,3,54,Software para Sistemas Ubíquos DPAAIN.434,
+7,4,54,Testes de Software DPAAIN.423,11
+4,5,27,Administração e Gestão Estratégica DPAAIN.410,
+5,6,54,Inovação e Empreendedorismo DPAAIN.411,
+6,7,27,Relações Étnico-Raciais e Cultura Afrobrasileira e Indígena DPAAIN.418,
+3,8,54,Sistemas Operacionais DPAAIN.402,
+2,9,27,Diversidade e Inclusão DPAAIN.396,
+6,10,108,Projeto de Pesquisa e Inovação I DPAAIN.417 ,
+5,11,54,Programação Orientada a Objetos II DPAAIN.413 ,16
+8,12,54,Extensão Curricular V DPAAIN.431,
+9,13,54,Arquitetura de Software DPAAIN.435,
+7,14,108,Projeto de Pesquisa e Inovação II DPAAIN.422,10
+1,15,54,Fundamentos de Álgebra e Cálculo DPAAIN.390,
+4,16,54,Programação Orientada a Objetos I DPAAIN.407 ,
+2,17,54,Cálculo I DPAAIN.399,15
+3,18,54,Álgebra Linear DPAAIN.403,15
+5,19,54,Interface Homem-Máquina DPAAIN.412,
+8,20,27,Marketing Digital DPAAIN.430,
+5,21,54,Extensão Curricular VI DPAAIN.436,
+6,22,54,Engenharia da Experiência do Usuário DPAAIN.420,19
+7,23,54,Introdução à Inteligência Artificial DPAAIN.424,
+1,24,54,Lógica e Pensamento Computacional DPAAIN.391,
+4,25,81,Estruturas de Dados DPAAIN.406 ,27
+2,26,54,Algoritmos e Técnicas de Programação I DPAAIN.395,24
+3,27,54,Algoritmos e Técnicas de Programação II DPAAIN.401,26
+7,28,27,Economia Criativa DPAAIN.425,
+5,29,54,Redes de Computadores DPAAIN.414 ,
+6,30,54,Sistemas Distribuídos DPAAIN.416,29
+8,31,54,Redes Móveis DPAAIN.428,29
+9,32,54,TCC II DPAAIN.437,49
+1,33,27,Escrita Científica para Computação DPAAIN.392,
+2,34,27,"Ética, Tecnologia e Sociedade DPAAIN.398",
+3,35,54,Banco de Dados I DPAAIN.404,
+4,36,54,Banco de Dados II DPAAIN.408 ,35
+7,37,54,Prática de Fábrica de Software II DPAAIN.427,39
+8,38,54,Prática de Fábrica de Software III DPAAIN.432,37
+6,39,54,Prática de Fábrica de Software I DPAAIN.421,16-35
+1,40,27,Inglês Instrumental DPAAIN.393,
+2,41,54,Extensão Curricular I DPAAIN.400 ,
+3,42,54,Extensão Curricular II DPAAIN.405,
+4,43,54,Extensão Curricular III DPAAIN.409 ,
+5,44,54,Extensão Curricular IV DPAAIN.415 ,
+1,45,54,Engenharia de Requisitos DPAAIN.394,
+2,46,54,Análise e Projeto de Sistemas DPAAIN.397,45
+6,47,54,"Governança, Segurança e Auditoria de Sistemas DPAAIN.419",
+7,48,27,Qualidade de Software DPAAIN.426,
+8,49,54,TCC I DPAAIN.433,
+0,50,27,Língua Brasileira de Sinais DPAAIN.438,
+0,51,27,Comportamento Organizacional DPAAIN.441,
+0,52,27,Introdução à Teoria da Computação DPAAIN.446,
+0,53,27,"Química, Meio Ambiente e Sociedade DPAAIN.439",
+0,54,27,Probabilidade DPAAIN.442,
+0,55,27,Leitura e Produção de Gêneros Acadêmicos DPAAIN.445,
+0,56,27,Desenvolvimento de Software para Dispositivos Móveis DPAAIN.443,
+0,57,27,Técnicas de Programação para Middleware DPAAIN.448,
+0,58,27,Ciência de Dados DPAAIN.444,
+0,59,27,Gestão de Custos DPAAIN.440,
+0,60,27,Redes Neurais e Aprendizado Profundo DPAAIN.447,
+
