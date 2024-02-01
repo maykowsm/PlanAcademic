@@ -1,5 +1,6 @@
 var jsonData; // Objeto json com os dados do aluno e do curso
 
+
 function leArquivo(file){
     return new Promise((resolve, reject)=>{
         var reader = new FileReader
@@ -20,4 +21,8 @@ function leArquivo(file){
 async function carregarArquivo(){
     var arquivo = document.getElementById('inputArquivo').files[0]
     jsonData = await leArquivo(arquivo)
+    carregarVariaveis()
 }
+
+
+

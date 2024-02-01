@@ -7,6 +7,9 @@ body{
 #menuLat{
     background-color: rgb(36, 36, 36,0);
     float: left ;
+    position: absolute;
+    top: 5px;
+    left: 5px;
     margin-left: 5px;
     margin-top: 10px;
     padding-right: 5px;
