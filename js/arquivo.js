@@ -21,7 +21,9 @@ function leArquivo(file){
 async function carregarArquivo(){
     var arquivo = document.getElementById('inputArquivo').files[0]
     jsonData = await leArquivo(arquivo)
-    carregarVariaveis()
+    clearInterval(functionPreload)
+    clearPreLoad()
+    setTimeout(load, 1000)
 }
 
 

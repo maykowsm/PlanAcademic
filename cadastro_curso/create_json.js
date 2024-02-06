@@ -26,6 +26,9 @@ function gerarJson(){
         var data = $.csv.toObjects(csv)
 
         data.forEach(materia => {
+            materia['ch'] =  parseInt(materia['ch'])
+            materia['id'] =  parseInt(materia['id'])
+            materia['semestre'] =  parseInt(materia['semestre'])
             materia['cursada'] = false
             materia['cursando'] = false
             materia['notaFinal'] = -1

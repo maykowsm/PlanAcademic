@@ -1,4 +1,5 @@
 var open_Menu = false
+var upload = false
 
 function openMenu(){
     var elementos = document.getElementsByClassName('opcaoMenu')

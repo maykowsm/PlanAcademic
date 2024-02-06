@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="styles/css_dark.css" >
         
     </head>
-    <body>
+    <body onmousemove="mouseMove(event)">
         <!-- Menu Superior -->
         <div id="menuLat">
 
@@ -26,6 +26,10 @@
                 <span class="material-symbols-outlined">upload</span>
             </button>
             <input oninput="carregarArquivo()" id="inputArquivo" type="file" accept=".json" hidden>
+
+            <button  class="buttonMenuSup opcaoMenu" title="Caregar arquivo json" style="display: none;" >                
+                <span class="material-symbols-outlined">save</span>
+            </button>
 
             <button onclick="teste()" class="buttonMenuSup opcaoMenu" title="Configurações" style="display: none;" >
                 <span class="material-symbols-outlined">settings</span>                
