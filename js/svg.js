@@ -5,6 +5,7 @@ var cards = [] //lista de cards de materias
 var listDependencias = [] //lista de materias interdependentes
 var listParCardDependente = [] // lista os pares dard, dependencia
 var listLinhasPontos = [] //linhas e pontos de conecção entre os cards
+var listaNomes = [] //lista dos nomes das matérias
 var seed = 1996
 
 // estilos dos cards
@@ -37,7 +38,7 @@ var diametroPontos = 5
 
 //Cria a animação principal randomizando o numero de retangulos em cada coluna a cada interação
 function preLoad(){
-    var recuoSuperior = 20
+    var recuoSuperior = 80
     var recuoLateral = 50
     var num_colunas = 9
     var altura = 50
@@ -48,6 +49,9 @@ function preLoad(){
     clearPreLoad()
 
     var largura = (window.innerWidth - ((num_colunas + 1) * espacamento_x)- recuoLateral)/num_colunas
+
+    rectPreLoad.push(canva.rect(400,30).move((canva.width()/2) - 200,20).fill(corCard).opacity(0.2))
+    rectPreLoad.push(canva.rect(150,20).move(60,20).fill(corCard).opacity(0.2))
 
     for(let i = 0; i<= num_colunas; i++){
         let num_materias =  Math.round(Math.random() * 5 )
@@ -162,7 +166,7 @@ function pseudoAleatorios(semente){
 
 // Cria a interface baseado no jsonData
 function load(){
-    var recuoSuperior = 20
+    var recuoSuperior = 80
     var recuoLateral = 50
     var altura = 50
     var espacamento_x = 10
@@ -172,13 +176,32 @@ function load(){
     clearCards()
     let materias = Object.entries(jsonData['materias'])
     var num_colunas = 0
+
+    //escreve o nome do curso
+    var nomeCurso = canva.text(jsonData['curso']['nome'].toString()).move(canva.width()/2, 20).fill('#ffffff')
+    nomeCurso.font({
+            family: 'Arial',
+            size: 30,
+            anchor: 'middle'
+
+        })
+
     materias.forEach(materia => {
         if(parseInt(materia[1]['semestre']) > num_colunas){num_colunas = parseInt(materia[1]['semestre'])}
     })
     console.log(num_colunas);
     var largura = (window.innerWidth - ((num_colunas + 1) * espacamento_x)- recuoLateral)/num_colunas
 
-    for(let i = 0; i<= num_colunas; i++){
+    for(let i = 0; i< num_colunas; i++){
+        //escreve o númeral corespondente a cada semestre
+        texto = canva.text((i+1).toString()+'ª').move(recuoLateral +(i+1)*espacamento_x + (i+1)*(largura)-(largura/2), recuoSuperior-15).fill('#ffffff')
+        texto.font({
+            family: 'Arial',
+            size: 15,
+            anchor: 'middle'
+
+        })
+        
         let materias  = getmaterias('semestre', i+1)
         materias.sort(function(){ return random()-0.5})
         
@@ -279,7 +302,7 @@ function mouseMove(event){
 
     // console.log(event.clientY );
 
-    if(event.clientY > 8 * 50){
+    if(event.clientY > 8 * altura + recuoSuperior){
         cards.forEach(card=>{
             card.attr({fill: corCard, stroke: corBorda, opacity: opacidade})
 
