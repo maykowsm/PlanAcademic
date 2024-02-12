@@ -5,10 +5,20 @@ var cards = [] //lista de cards de materias
 var listDependencias = [] //lista de materias interdependentes
 var listParCardDependente = [] // lista os pares dard, dependencia
 var listLinhasPontos = [] //linhas e pontos de conecção entre os cards
-var listaNomes = [] //lista dos nomes das matérias
+var listaNomes = [] //lista dos textox com os nomes das matérias
 var seed = 1996
 
-// estilos dos cards
+//configuração do layout dos cards
+var altura = 60 
+var recuoSuperior = 80 
+var recuoLateral = 50    
+var espacamento_x = 10
+var espacamento_y = 10
+var raio = 5
+var largura
+
+
+// estilos dos cards ------------------------------------------
 // Normal
 var corCard = new SVG.Color('rgb(100,100,100)')
 var corBorda = new SVG.Color('rgb(100,100,100)')
@@ -30,10 +40,14 @@ var corBordaDependente = new SVG.Color('rgb(55, 158, 184)')
 var opacidadeDependente = 0.5
 
 
-//estilos das linhas e pontos
+//estilos das linhas e pontos ------------------------------------
 var corLinhas = new SVG.Color('rgb(255, 255, 255)')
 var espessuraLinha = 3
 var diametroPontos = 5
+
+//estilo do texto dos cards -------------------------------------
+var corTexto = new SVG.Color('rgb(255, 255, 255)')
+var tamanhoTexto = 10
 
 
 //Cria a animação principal randomizando o numero de retangulos em cada coluna a cada interação
@@ -93,6 +107,16 @@ function getmaterias(key, value){
     })
 
     return materias
+}
+
+function getText(id){
+    
+    for(let i=0; i< listaNomes.length; i++){
+        if(listaNomes[i].data('id') == id){
+            return listaNomes[i]
+        }
+    }
+    
 }
 
 // busca cards correspondentes a chave valor
@@ -164,14 +188,52 @@ function pseudoAleatorios(semente){
     }
 }
 
+function getString(str){
+    let lista = str.split(' ')
+    var frase = ''
+    var text = canva.text()
+    text.build(true)
+    cont = 0
+    for(let i = 0; i < lista.length; i++){
+
+        if((cont+lista[i].length) < (largura/14)){
+            cont += lista[i].length
+            
+            
+        }else{
+            if(frase != '' && frase != ' '){
+                console.log(frase);
+                cont = 0
+                text.tspan(frase).newLine()
+                frase = ''
+            }            
+        }
+        frase = frase + ' ' + lista[i]
+    }
+    text.tspan(frase).newLine()
+    text.build(false)
+    return text
+}
+
+function showNames(){
+    cards.forEach(card=>{
+        let text = getString(card.data('nome'))
+        text.move(card.x()+(card.width()/2), card.y()-1).fill(corTexto).opacity(1)
+        text.font({
+            family: 'Arial',
+            size: tamanhoTexto,
+            anchor: 'middle'
+        })
+        text.data({id: card.data('id')})
+        listaNomes.push(text)
+        
+    })
+}
+
 // Cria a interface baseado no jsonData
 function load(){
-    var recuoSuperior = 80
-    var recuoLateral = 50
-    var altura = 50
-    var espacamento_x = 10
-    var espacamento_y = 10
-    var raio = 5
+    
+    
     var random = pseudoAleatorios(seed)
     clearCards()
     let materias = Object.entries(jsonData['materias'])
@@ -183,14 +245,13 @@ function load(){
             family: 'Arial',
             size: 30,
             anchor: 'middle'
-
         })
 
     materias.forEach(materia => {
         if(parseInt(materia[1]['semestre']) > num_colunas){num_colunas = parseInt(materia[1]['semestre'])}
     })
     console.log(num_colunas);
-    var largura = (window.innerWidth - ((num_colunas + 1) * espacamento_x)- recuoLateral)/num_colunas
+    largura = (window.innerWidth - ((num_colunas + 1) * espacamento_x)- recuoLateral)/num_colunas
 
     for(let i = 0; i< num_colunas; i++){
         //escreve o númeral corespondente a cada semestre
@@ -224,7 +285,9 @@ function load(){
             
             cards.push(card)
         }
-    } 
+    }
+    
+    showNames()
 
 }
 // altera a visualização dos card dependentes
@@ -233,6 +296,8 @@ function showDependentes(focoCard){
     listDependencias.forEach(card=>{
         if(focoCard.data('id') != card.data('id')){
             card.attr({fill: corCardDependente, stroke: corBordaDependente, opacity: opacidadeDependente})
+            let textCard = getText(card.data('id'))
+            textCard.opacity(1) 
         }        
     })
 }
@@ -270,6 +335,8 @@ function showLines(){
 function insideCard(X, Y){
     cards.forEach(card=>{
         card.attr({fill: corCardDesfoco, stroke: corBordaDesfoco, opacity: opacidadeDesfoco})
+        let textCard = getText(card.data('id'))
+        textCard.opacity(0.3)
     })
     for(let i = 0; i< listLinhasPontos.length; i++){
         listLinhasPontos[i].remove()
@@ -284,13 +351,13 @@ function insideCard(X, Y){
             getDependencias(card)
             cardDependente()            
             showLines()
-            
-            
             showDependentes(card) //altera a visualização dos cards dependente
             // console.log(listDependencias);
 
             card.attr({fill: corCardHover, stroke: corBordaHover, opacity: opacidadeHover})
-            card.stroke({width: 2})           
+            card.stroke({width: 2}) 
+            let textCard = getText(card.data('id'))
+            textCard.opacity(1)          
         }
     })
 }
@@ -303,9 +370,10 @@ function mouseMove(event){
     // console.log(event.clientY );
 
     if(event.clientY > 8 * altura + recuoSuperior){
-        cards.forEach(card=>{
-            card.attr({fill: corCard, stroke: corBorda, opacity: opacidade})
-
+        cards.forEach(card=>{            
+            card.attr({fill: corCard, stroke: corBorda, opacity: opacidade})            
+            textCard = getText(card.data('id'))
+            textCard.opacity(1)
         })
     }
 
