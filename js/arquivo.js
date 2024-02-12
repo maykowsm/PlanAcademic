@@ -42,7 +42,9 @@ document.getElementById('area-arquivo').addEventListener('drop', async function(
     e.preventDefault();
     console.log('arquivo carregado com sucesso!');    
     var arquivo = e.dataTransfer.files[0]
-    jsonData = await leArquivo(arquivo)
+    jsonData = await leArquivo(arquivo).catch(function(error){
+        alert('Não foi possivel carregar o arquivo! recareque a pagina para uma nova tentativa.')
+    })
     clearInterval(functionPreload)
     clearPreLoad()
     closeBoasVindas()

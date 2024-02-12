@@ -235,7 +235,14 @@ function load(){
     
     var random = pseudoAleatorios(seed)
     clearCards()
-    let materias = Object.entries(jsonData['materias'])
+    try{
+        let materias = Object.entries(jsonData['materias'])
+    }catch{
+        if (window.confirm('Não foi possivel carregar o arquivo! Clique em OK para saber como obter um arquivo válido.')){
+            window.location.href='https://www.google.com/chrome/browser/index.html';
+        };
+    }
+    
     var num_colunas = 0
 
     //escreve o nome do curso
