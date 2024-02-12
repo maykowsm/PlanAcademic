@@ -202,7 +202,6 @@ function getString(str){
             
         }else{
             if(frase != '' && frase != ' '){
-                console.log(frase);
                 cont = 0
                 text.tspan(frase).newLine()
                 frase = ''

@@ -16,3 +16,11 @@ function openMenu(){
         });
     }
 }
+
+// centraliza a janela de boas vindas
+function boasVindas(){
+    janela = document.getElementById('boas-vindas')
+    janela.style.left = (window.innerWidth/2) - (window.innerWidth*0.4/2)
+}
+
+boasVindas()

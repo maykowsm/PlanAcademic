@@ -26,5 +26,28 @@ async function carregarArquivo(){
     setTimeout(load, 1000)
 }
 
+function closeBoasVindas(){
+    janela = document.getElementById('boas-vindas')
+    janela.style.display = 'none'
+}
+
+
+document.getElementById('area-arquivo').addEventListener('dragover', function(e){
+    e.preventDefault();
+    console.log('arrastando arquivos!');        
+})
+
+
+document.getElementById('area-arquivo').addEventListener('drop', async function(e){
+    e.preventDefault();
+    console.log('arquivo carregado com sucesso!');    
+    var arquivo = e.dataTransfer.files[0]
+    jsonData = await leArquivo(arquivo)
+    clearInterval(functionPreload)
+    clearPreLoad()
+    closeBoasVindas()
+    setTimeout(load, 1000)
+})
+
 
 

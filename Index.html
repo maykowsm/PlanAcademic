@@ -40,7 +40,33 @@
             </button>
 
         </div>
-        <svg id="canva"></svg>        
+
+        <!-- janela de boas vindas -->
+        <div id="boas-vindas">
+            <span onclick="closeBoasVindas()" style="float: right; cursor: pointer;" class="material-symbols-outlined">Close</span> 
+            <h2 style="margin-bottom: 5px;">Seja Bem Vindo(a) ao Morgana!</h2>
+            <hr>
+            <div id="area-arquivo" >
+                <h4>Arraste seu arquivo aqui!</h4>
+                <img src="img/upload_file_blue.svg" style="height: 70px;">
+            </div>
+            <div style="display: block; height: 60px;">
+                <div style="display: inline-flex;">
+                    <p></p>
+                    <p id="msg-upload-sucess" hidden>Arquivo Carregado com sucesso!</p>
+                    <p id="msg-upload-error" hidden>Erro ao carregar arquivo :(</p>
+                    <p id="msg-upload-warning" hidden>Carrege um aruivo antes de avançar!</p>
+                </div>                
+            </div>
+
+            <div style="display: inline; width: 100%;">
+                <p>Saiba como obter um arquivo para upload <a href="#">aqui</a>!</p>
+            </div>
+            
+
+        </div>
+        <!-- area de desenho svg -->
+        <svg id="canva"></svg>       
     </body>
 
 

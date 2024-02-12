@@ -46,7 +46,6 @@ input:hover{
     border-color: rgb(55, 158, 184);
 }
 button{
-    
     background-color: white;
     cursor: pointer;
     display: inline-block;
