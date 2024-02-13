@@ -23,7 +23,7 @@ body{
     height: 50px;
     border: none;
     border-radius: 5px;
-    background-color: rgb(36, 36, 36);
+    background-color: rgb(36, 36, 36, 0);
     color: white;
     transition: 100ms;
     
@@ -151,12 +151,8 @@ body{
 }
 
 #tabela-config input:hover{
-    /* border-color: rgb(255, 255, 255); */
     border-color: rgb(55, 158, 184);
-    /* box-shadow: 0px 0px 5px rgb(55, 158, 184); */
 }
-
-
 
 .entrada-cor{
     height: 30px;
@@ -166,6 +162,64 @@ body{
 }
 
 
+#view_materia{
+    display: none;
+    position: absolute;
+    padding: 20px;
+    width: 40%;
+    height: 60%;
+    top: 100px;
+    color:white;
+    background-color: rgba(0, 0, 0);
+    box-shadow: 0px 0px 30px rgb(44, 44, 44);
+    border-radius: 10px;
+}
 
+#view_data{
+    height: 75%;
+    overflow-y: scroll;
+}
 
+#tabela_view_data{
+    font-size: 14pt;
+    width: 100%;
+    color: white;
+}
 
+#tabela_view_data input{    
+    display: block;
+    height: 30px;
+    font-size: 12pt;
+    width: 100%;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-width: 3px;
+}
+
+#tabela_view_data input:hover{
+    border-color: rgb(55, 158, 184);
+}
+
+.linha_view_data{
+    height: 40px;    
+}
+
+textarea{
+    display: block;
+    height: 30px;
+    font-size: 12pt;
+    width: 100%;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-width: 3px;
+}
+textarea:hover{
+    border-color: rgb(55, 158, 184);
+}
+
+.btn_select{
+    
+    width: 20%;
+}

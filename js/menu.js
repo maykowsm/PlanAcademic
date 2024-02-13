@@ -31,6 +31,7 @@ function alterModeColor(){
         document.getElementById('img_settings').src = 'img/settings_black.svg'
         document.getElementById('img_question').src = 'img/question_black.svg'
         document.getElementById('img_question').src = 'img/question_black.svg'
+        document.getElementById('btn-voltar-materia').src = 'img/close_black.svg'
     }else{
         style = 'dark'
         document.getElementById('img-style').src = 'img/style-dark.svg'
@@ -42,6 +43,7 @@ function alterModeColor(){
         document.getElementById('img_save').src = 'img/save_white.svg'
         document.getElementById('img_settings').src = 'img/settings_white.svg'
         document.getElementById('img_question').src = 'img/question_white.svg'
+        document.getElementById('btn-voltar-materia').src = 'img/close_white.svg'
     }
 
     loadConfig()
@@ -150,7 +152,7 @@ function alteraCor(id_input, id_div){
     }
 }
 
-//altera chaves de celeção
+//altera chaves de celeção dos botoes da janela de configuração
 function alterKey(chave){
     if(chave == 'select_mostrara_materias_cursadas'){
         if(mostrarMatriasCursadas){
@@ -172,6 +174,79 @@ function alterKey(chave){
         }
     }
     loadConfig()
+}
+
+//altera a chave de celeção dos botoes da janela de visualização de matérias 
+function alterkeyMateria(chave){
+    console.log(chave);
+    if(chave == 'img_materia_cursada'){
+        if(cardSelecionado.data('cursada')){
+            cardSelecionado.data({cursada:  false})
+        }else{
+            cardSelecionado.data({cursada:  true})
+        }         
+    }else if(chave == 'img_cursando_materia'){
+        if(cardSelecionado.data('cursando')){
+            cardSelecionado.data({cursando:  false})
+        }else{
+            cardSelecionado.data({cursando:  true})
+        }         
+    }
+
+    loadMateria()
+}
+
+//carrega os dados na janela de visualização da matéria
+function loadMateria(){
+    console.log(cardSelecionado);
+    let card = cardSelecionado
+    document.getElementById('title_materia').innerText = card.data('nome')
+    document.getElementById('semestre_data').innerText = card.data('semestre') + 'ª'
+    document.getElementById('carga_horaria_data').innerText = card.data('ch') + ' h'
+    document.getElementById('name_professor').value = card.data('professor')
+    document.getElementById('nota_materia').value = card.data('notaFinal')
+    document.getElementById('anotacoes_materia').value = card.data('anotacoes')
+
+    if(style == 'dark'){
+        if(card.data('cursada')){
+            document.getElementById('img_materia_cursada').src = 'img/on-dark.svg'
+        }else{
+            document.getElementById('img_materia_cursada').src = 'img/off-dark.svg'
+        }
+
+        if(card.data('cursando')){
+            document.getElementById('img_cursando_materia').src = 'img/on-dark.svg'
+        }else{
+            document.getElementById('img_cursando_materia').src = 'img/off-dark.svg'
+        }        
+    }else{
+        if(card.data('cursada')){
+            document.getElementById('img_materia_cursada').src = 'img/on-light.svg'
+        }else{
+            document.getElementById('img_materia_cursada').src = 'img/off-light.svg'
+        }
+
+        if(card.data('cursando')){
+            document.getElementById('img_cursando_materia').src = 'img/on-light.svg'
+        }else{
+            document.getElementById('img_cursando_materia').src = 'img/off-light.svg'
+        }
+
+    }
+    
+    document.getElementById('view_materia').style.display = 'block'
+
+}
+
+function closeMateria(){
+    let card = cardSelecionado
+    console.log(document.getElementById('name_professor').value);
+    card.data({professor: document.getElementById('name_professor').value})
+    card.data({notaFinal: document.getElementById('nota_materia').value})
+    card.data({anotacoes: document.getElementById('anotacoes_materia').value})
+    
+    cardSelecionado = ''
+    document.getElementById('view_materia').style.display = 'none'
 }
 
 //abre a janela de configuração
@@ -196,5 +271,11 @@ function boasVindas(){
     janela.style.left = (window.innerWidth/2) - (window.innerWidth*0.4/2)
 }
 
+//centraliza a janela de matérias
+function viewMateria(){
+    janela = document.getElementById('view_materia').style.left = (window.innerWidth/2) - (window.innerWidth*0.4/2)
+}
+
+viewMateria()
 boasVindas()
 loadConfig()

@@ -23,7 +23,7 @@ body{
     height: 50px;
     border: none;
     border-radius: 5px;
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(235, 235, 235, 0);
     color: rgb(0, 0, 0);
     transition: 100ms;
     
@@ -103,6 +103,25 @@ body{
     box-shadow: 0px 0px 30px gray;
 }
 
+.slideIn_config{
+    animation-name: slideIn;
+    animation-duration: 500ms;
+}
+
+@keyframes slideIn{
+    0%{transform: translateX(-1000px);}
+    100%{transform: translateX(0px);}
+}
+.slideOut_config{
+    animation-name: slideOut;
+    animation-duration: 500ms;
+}
+
+@keyframes slideOut{
+    0%{transform: translateX(0px);}
+    100%{transform: translateX(-1000px);}
+}
+
 #list-config{
     overflow-y:scroll;
     
@@ -150,6 +169,68 @@ body{
     border: solid 2px rgb(0, 0, 0);
 }
 
+
+#view_materia{
+    display: none;
+    position: absolute;
+    padding: 20px;
+    width: 40%;
+    height: 60%;
+    top: 100px;
+    color:rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 30px gray;
+    border-radius: 10px;
+}
+
+#view_data{
+    
+    height: 75%;
+    overflow-y: scroll;
+}
+
+#tabela_view_data{
+    font-size: 14pt;
+    width: 100%;
+    color: rgb(0, 0, 0);
+}
+
+#tabela_view_data input{    
+    display: block;
+    height: 30px;
+    font-size: 12pt;
+    width: 100%;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+}
+
+#tabela_view_data input:hover{
+    border-color: rgb(55, 158, 184);
+}
+
+.linha_view_data{
+    height: 40px;    
+}
+
+textarea{
+    display: block;
+    height: 30px;
+    font-size: 12pt;
+    width: 100%;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+}
+textarea:hover{
+    border-color: rgb(55, 158, 184);
+}
+
+.btn_select{
+    width: 20%;
+}
 
 
 

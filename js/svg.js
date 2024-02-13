@@ -6,6 +6,7 @@ var listDependencias = [] //lista de materias interdependentes
 var listParCardDependente = [] // lista os pares dard, dependencia
 var listLinhasPontos = [] //linhas e pontos de conecção entre os cards
 var listaNomes = [] //lista dos textox com os nomes das matérias
+var cardSelecionado //armazena o card celecionado para manipulação na janela de materias
 var seed = 1996
 var num_colunas = 0
 var nomeCurso = ''
@@ -252,11 +253,18 @@ function showNames(){
             anchor: 'middle'
         })
         text.data({id: card.data('id')})
+
+        //adiciona um evento de click ao texto para abrir a janela de visualização de materia
+        text.click(function(){
+            cardSelecionado = getCards('id', this.data('id'))[0]
+            loadMateria()
+        })
         listaNomes.push(text)
         
     })
 }
 
+//carrega cabeçalho com nome do aluno curso e semestres
 function loadHead(){
     //escreve o nome do curso
     nomeCurso = canva.text(jsonData['curso']['nome'].toString()).move(canva.width()/2, 20).fill(corTexto)
@@ -293,7 +301,6 @@ function load(){
         };
     }
     
-    
     materias.forEach(materia => {
         if(parseInt(materia[1]['semestre']) > num_colunas){num_colunas = parseInt(materia[1]['semestre'])}
     })
@@ -301,15 +308,7 @@ function load(){
     largura = (window.innerWidth - ((num_colunas + 1) * espacamento_x)- recuoLateral)/num_colunas
 
     for(let i = 0; i< num_colunas; i++){
-        //escreve o númeral corespondente a cada semestre
-        texto = canva.text((i+1).toString()+'ª').move(recuoLateral +(i+1)*espacamento_x + (i+1)*(largura)-(largura/2), recuoSuperior-15).fill('#ffffff')
-        texto.font({
-            family: 'Arial',
-            size: 15,
-            anchor: 'middle'
-
-        })
-        
+               
         let materias  = getmaterias('semestre', i+1)
         materias.sort(function(){ return random()-0.5})
         
@@ -330,10 +329,15 @@ function load(){
                         anotacoes: materias[j]['anotacoes']
                     })
             
+            card.click(function(){
+                cardSelecionado = this
+                loadMateria()
+            })
+            
             cards.push(card)
         }
     }
-    
+    loadHead()
     showNames()
 
 }
@@ -422,12 +426,6 @@ function mouseMove(event){
     }
 
 }
-
-//aplica os estilos carregados nas variáveis
-function applyStyle(){
-
-}
-
 
 // Função principal das animações 
 async function main(){
