@@ -1,7 +1,8 @@
 var jsonData; // Objeto json com os dados do aluno e do curso
 
-
+//fa z a leitura do aruivo json
 function leArquivo(file){
+    closeBoasVindas()
     return new Promise((resolve, reject)=>{
         var reader = new FileReader
         
@@ -18,6 +19,7 @@ function leArquivo(file){
     })
 }
 
+//carrega arquivo json
 async function carregarArquivo(){
     var arquivo = document.getElementById('inputArquivo').files[0]
     jsonData = await leArquivo(arquivo)
@@ -26,18 +28,19 @@ async function carregarArquivo(){
     setTimeout(load, 1000)
 }
 
+//fecha a janela de boas vindas
 function closeBoasVindas(){
     janela = document.getElementById('boas-vindas')
     janela.style.display = 'none'
 }
 
-
+//identifica o arraste de um arquivo em uma área na janela de boas vindas
 document.getElementById('area-arquivo').addEventListener('dragover', function(e){
     e.preventDefault();
     console.log('arrastando arquivos!');        
 })
 
-
+//adiciona o evento de soltar um arquivo em uma área na janela de boas vindas
 document.getElementById('area-arquivo').addEventListener('drop', async function(e){
     e.preventDefault();
     console.log('arquivo carregado com sucesso!');    

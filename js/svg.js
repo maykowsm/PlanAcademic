@@ -7,6 +7,12 @@ var listParCardDependente = [] // lista os pares dard, dependencia
 var listLinhasPontos = [] //linhas e pontos de conecção entre os cards
 var listaNomes = [] //lista dos textox com os nomes das matérias
 var seed = 1996
+var num_colunas = 0
+var nomeCurso = ''
+var listSemestres = []
+
+
+
 
 //configuração do layout dos cards
 var altura = 60 
@@ -16,6 +22,16 @@ var espacamento_x = 10
 var espacamento_y = 10
 var raio = 5
 var largura
+
+//parametros da janela de configuração
+var style = 'dark' //estilo do layout
+var nomeAluno = ''
+var mostrarMatriasCursadas = true
+var mostrarMediaGeral = false
+var mostrarProgressao = true
+var corFundo = '#242424'
+
+
 
 
 // estilos dos cards ------------------------------------------
@@ -38,6 +54,12 @@ var opacidadeDesfoco = 0.5
 var corCardDependente = new SVG.Color('rgb(55, 158, 184)')
 var corBordaDependente = new SVG.Color('rgb(55, 158, 184)')
 var opacidadeDependente = 0.5
+
+//cursadas
+var corCradCursado = new SVG.Color( '#927c00')
+var bordaCursado = new SVG.Color( '#927c00')
+var opacidadeCursado = 1
+
 
 
 //estilos das linhas e pontos ------------------------------------
@@ -84,6 +106,12 @@ function clearPreLoad(){
             rectPreLoad[i].remove()
         }
     }
+}
+
+function clearText(){
+    listaNomes.forEach(texto=>{
+        texto.remove()
+    })
 }
 
 // limpa o desenho dos cards
@@ -229,6 +257,28 @@ function showNames(){
     })
 }
 
+function loadHead(){
+    //escreve o nome do curso
+    nomeCurso = canva.text(jsonData['curso']['nome'].toString()).move(canva.width()/2, 20).fill(corTexto)
+    nomeCurso.font({
+            family: 'Arial',
+            size: 30,
+            anchor: 'middle'
+        })
+    
+    for(let i = 0; i< num_colunas; i++){
+        //escreve o númeral corespondente a cada semestre
+        texto = canva.text((i+1).toString()+'ª').move(recuoLateral +(i+1)*espacamento_x + (i+1)*(largura)-(largura/2), recuoSuperior-15).fill(corTexto)
+        texto.font({
+            family: 'Arial',
+            size: 15,
+            anchor: 'middle'
+
+        })
+        listSemestres.push(texto)
+    }
+}
+
 // Cria a interface baseado no jsonData
 function load(){
     
@@ -236,23 +286,14 @@ function load(){
     var random = pseudoAleatorios(seed)
     clearCards()
     try{
-        let materias = Object.entries(jsonData['materias'])
+        var materias = Object.entries(jsonData['materias'])
     }catch{
         if (window.confirm('Não foi possivel carregar o arquivo! Clique em OK para saber como obter um arquivo válido.')){
             window.location.href='https://www.google.com/chrome/browser/index.html';
         };
     }
     
-    var num_colunas = 0
-
-    //escreve o nome do curso
-    var nomeCurso = canva.text(jsonData['curso']['nome'].toString()).move(canva.width()/2, 20).fill('#ffffff')
-    nomeCurso.font({
-            family: 'Arial',
-            size: 30,
-            anchor: 'middle'
-        })
-
+    
     materias.forEach(materia => {
         if(parseInt(materia[1]['semestre']) > num_colunas){num_colunas = parseInt(materia[1]['semestre'])}
     })
@@ -303,7 +344,7 @@ function showDependentes(focoCard){
         if(focoCard.data('id') != card.data('id')){
             card.attr({fill: corCardDependente, stroke: corBordaDependente, opacity: opacidadeDependente})
             let textCard = getText(card.data('id'))
-            textCard.opacity(1) 
+            textCard.opacity(1).fill(corTexto)
         }        
     })
 }
@@ -342,7 +383,7 @@ function insideCard(X, Y){
     cards.forEach(card=>{
         card.attr({fill: corCardDesfoco, stroke: corBordaDesfoco, opacity: opacidadeDesfoco})
         let textCard = getText(card.data('id'))
-        textCard.opacity(0.3)
+        textCard.opacity(0.2).fill(corTexto)
     })
     for(let i = 0; i< listLinhasPontos.length; i++){
         listLinhasPontos[i].remove()
@@ -358,12 +399,11 @@ function insideCard(X, Y){
             cardDependente()            
             showLines()
             showDependentes(card) //altera a visualização dos cards dependente
-            // console.log(listDependencias);
 
             card.attr({fill: corCardHover, stroke: corBordaHover, opacity: opacidadeHover})
             card.stroke({width: 2}) 
             let textCard = getText(card.data('id'))
-            textCard.opacity(1)          
+            textCard.opacity(1).fill(corTexto)          
         }
     })
 }
@@ -373,15 +413,18 @@ function mouseMove(event){
     console.log('mouseMove');
     insideCard(event.clientX, event.clientY)
 
-    // console.log(event.clientY );
-
-    if(event.clientY > 8 * altura + recuoSuperior){
+    if(event.clientY > 8 * altura + recuoSuperior || event.clientY < recuoSuperior){
         cards.forEach(card=>{            
             card.attr({fill: corCard, stroke: corBorda, opacity: opacidade})            
             textCard = getText(card.data('id'))
-            textCard.opacity(1)
+            textCard.opacity(1).fill(corTexto) 
         })
     }
+
+}
+
+//aplica os estilos carregados nas variáveis
+function applyStyle(){
 
 }
 

@@ -11,42 +11,43 @@
         
         
         
-        <link rel="stylesheet" href="styles/css_dark.css" >
+        <link id="folha-estilo" rel="stylesheet" href="styles/css_dark.css" >
         
     </head>
-    <body onmousemove="mouseMove(event)">
+    <body id="body" onmousemove="mouseMove(event)">
         <!-- Menu Superior -->
         <div id="menuLat">
 
             <button class="buttonMenuSup" title="Menu" onclick="openMenu()">
-                <span class="material-symbols-outlined">menu</span>
+                <img id="img_menu" style="cursor: pointer; height: 25px;" src="img/menu_white.svg">                
             </button>
 
             <button onclick="inputArquivo.click()" class="buttonMenuSup opcaoMenu" title="Caregar arquivo json" style="display: none;" >                
-                <span class="material-symbols-outlined">upload</span>
+                <img id="img_upload" style="cursor: pointer; height: 25px;" src="img/upload_white.svg">
             </button>
             <input oninput="carregarArquivo()" id="inputArquivo" type="file" accept=".json" hidden>
 
             <button  class="buttonMenuSup opcaoMenu" title="Salvar arquivo" style="display: none;" >                
-                <span class="material-symbols-outlined">save</span>
+                <img id="img_save" style="cursor: pointer; height: 25px;" src="img/save_white.svg">
             </button>
 
-            <button onclick="teste()" class="buttonMenuSup opcaoMenu" title="Configurações" style="display: none;" >
-                <span class="material-symbols-outlined">settings</span>                
+            <button onclick="openConfig()" class="buttonMenuSup opcaoMenu" title="Configurações" style="display: none;" >
+                <img id="img_settings" style="cursor: pointer; height: 25px;" src="img/settings_white.svg">               
             </button>
             
             <button class="buttonMenuSup opcaoMenu" title="Como usar?" style="display: none;" >
-                <span class="material-symbols-outlined" alt="teste" >question_mark</span>                    
+                <img id="img_question" style="cursor: pointer; height: 25px;" src="img/question_white.svg">  
             </button>
 
         </div>
 
         <!-- janela de boas vindas -->
         <div id="boas-vindas">
-            <span onclick="closeBoasVindas()" style="float: right; cursor: pointer;" class="material-symbols-outlined">Close</span> 
+            <img id="img_close_boas_vindas" src="img/close_white.svg" style="float: right; cursor: pointer;" onclick="closeBoasVindas()"> 
+            
             <h2 style="margin-bottom: 5px;">Seja Bem Vindo(a) ao Morgana!</h2>
             <hr>
-            <div id="area-arquivo" >
+            <div id="area-arquivo" onclick="inputArquivo.click()" style="cursor: pointer;">
                 <h4>Arraste seu arquivo aqui!</h4>
                 <img src="img/upload_file_blue.svg" style="height: 70px;">
             </div>
@@ -60,19 +61,101 @@
             </div>
 
             <div style="display: inline; width: 100%;">
-                <p>Saiba como obter um arquivo para upload <a href="#">aqui</a>!</p>
+                <p>Saiba como obter um arquivo válido para upload <a href="#">aqui</a>!</p>
             </div>
-            
-
         </div>
+
+        <!-- janela de configuração -->
+        <div id="configuracao">
+            <img id="btn-voltar-config" class="img-close" src="img/arrow_back_white.svg" style="display: block; float: right; height: 30px; cursor: pointer;" onclick="closeConfig()">
+            <h2 style="margin-top: 0px;">Configuração</h2>
+            <hr>
+            <div id="list-config">
+                <table id="tabela-config">
+                    <tr>
+                        <td>Nome Aluno: </td>
+                        <td class="entrada"><input id="input_nome_aluno" type="text" placeholder="Você tem um nome ?"></td>                        
+                    </tr>
+                    <tr>
+                        <td>Mostrar Matérias Cursadas: </td>
+                        <td class="entrada"><img id="select_mostrara_materias_cursadas" src="img/on-dark.svg" style="height: 30px; cursor: pointer;" onclick="alterKey('select_mostrara_materias_cursadas')"></td>
+                    </tr>
+                    <tr>
+                        <td>Mostrar Média Geral: </td>
+                        <td class="entrada"><img id="select_mostrar_media_geral" src="img/on-dark.svg" style="height: 30px; cursor: pointer;" onclick="alterKey('select_mostrar_media_geral')"></td>
+                    </tr>
+                    <tr>
+                        <td>Mostrar Gráfico de progressão: </td>
+                        <td class="entrada"><img id="select_mostrar_grafico_progressao" src="img/on-dark.svg" style="height: 30px; cursor: pointer;" onclick="alterKey('select_mostrar_grafico_progressao')"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><hr><h3 style="margin-top: 0px; margin-bottom: 0px;">Estilo</h3><hr></td>
+                    </tr>
+                    <tr>
+                        <td>Tema:</td>
+                        <td class="entrada"><img id="img-style" src="img/style-dark.svg" style="height: 30px; cursor: pointer;" onclick="alterModeColor()"></td>
+                    </tr>
+                    <tr>
+                        <td>Fundo:</td>
+                        <td class="entrada">
+                            <div id="circulo_color_fundo" class="entrada-cor" onclick="color_fundo.click()" style="cursor: pointer;">
+                                <input id="color_fundo" type="color" style="opacity: 0; cursor: pointer;" oninput="alteraCor('color_fundo','circulo_color_fundo')">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Matérias:</td>
+                        <td class="entrada">
+                            <div id="circulo_color_cards" class="entrada-cor" onclick="color_cards.click()" style="cursor: pointer;">
+                                <input id="color_cards" type="color" style="opacity: 0;cursor: pointer;" oninput="alteraCor('color_cards','circulo_color_cards')">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Matéria Selecionada:</td>
+                        <td class="entrada">
+                            <div id="circulo_card_selecionado" class="entrada-cor" onclick="card_selecionado.click()" style="cursor: pointer;">
+                                <input id="card_selecionado" type="color" style="opacity: 0;cursor: pointer;" oninput="alteraCor('card_selecionado','circulo_card_selecionado')">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Matérias Cursada:</td>
+                        <td class="entrada">
+                            <div id="circulo_card_cursado" class="entrada-cor" onclick="card_cursado.click()" style="cursor: pointer;">
+                                <input id="card_cursado" type="color" style="opacity: 0;cursor: pointer;" oninput="alteraCor('card_cursado','circulo_card_cursado')">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Linhas:</td>
+                        <td class="entrada">
+                            <div id="circulo_color_linha" class="entrada-cor" onclick="color_linha.click()" style="cursor: pointer;">
+                                <input id="color_linha" type="color" style="opacity: 0;cursor: pointer;" oninput="alteraCor('color_linha','circulo_color_linha')">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Texto:</td>
+                        <td class="entrada">
+                            <div id="circulo_color_texto" class="entrada-cor" onclick="color_texto.click()" style="cursor: pointer;">
+                                <input id="color_texto" type="color" style="opacity: 0;cursor: pointer;" oninput="alteraCor('color_texto','circulo_color_texto')">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        
         <!-- area de desenho svg -->
         <svg id="canva"></svg>       
     </body>
 
 
-        <script src="js/arquivo.js"></script>
-        <script src="js/menu.js"></script>
+        <script src="js/arquivo.js"></script>        
         <script src="js/svg.js"></script>
+        <script src="js/menu.js"></script>
     
     
 </html>
