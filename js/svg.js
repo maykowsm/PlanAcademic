@@ -7,10 +7,12 @@ var listParCardDependente = [] // lista os pares dard, dependencia
 var listLinhasPontos = [] //linhas e pontos de conecção entre os cards
 var listaNomes = [] //lista dos textox com os nomes das matérias
 var cardSelecionado //armazena o card celecionado para manipulação na janela de materias
+var canvaNomeAluno //armazena o svg com o nome do aluno
 var seed = 1996
 var num_colunas = 0
-var nomeCurso = ''
 var listSemestres = []
+var ch_realizada = 0 // quarda a carga horária ja realizada pelo aluno
+var ch_total = 0 // guarda a carga horária total do curso
 
 
 
@@ -26,6 +28,7 @@ var largura
 
 //parametros da janela de configuração
 var style = 'dark' //estilo do layout
+var nomeCurso = ''
 var nomeAluno = ''
 var mostrarMatriasCursadas = true
 var mostrarMediaGeral = false
@@ -58,7 +61,7 @@ var opacidadeDependente = 0.5
 
 //cursadas
 var corCradCursado = new SVG.Color( '#927c00')
-var bordaCursado = new SVG.Color( '#927c00')
+var corBordaCursado = new SVG.Color( '#927c00')
 var opacidadeCursado = 1
 
 
@@ -264,8 +267,31 @@ function showNames(){
     })
 }
 
+function clearHead(){
+    canvaNomeAluno = ''
+    nomeCurso = ''
+    listSemestres.forEach(texto=>{ texto.remove()})
+}
+
 //carrega cabeçalho com nome do aluno curso e semestres
 function loadHead(){
+    //escreve o nome do aluno
+    if(document.getElementById('input_nome_aluno').value == '' || document.getElementById('input_nome_aluno').value == ' '){
+        nomeAluno = jsonData['aluno']['nome'].toString()    
+    }else{
+        nomeAluno = document.getElementById('input_nome_aluno').value
+    }
+    
+    if(nomeAluno){
+        canvaNomeAluno = canva.text('Aluno: '+nomeAluno).fill(corTexto).move(recuoLateral+10, 25)
+        canvaNomeAluno.font({
+            family: 'Arial',
+            size: 18,
+            // anchor: 'middle'
+        })
+    }
+    
+
     //escreve o nome do curso
     nomeCurso = canva.text(jsonData['curso']['nome'].toString()).move(canva.width()/2, 20).fill(corTexto)
     nomeCurso.font({
@@ -287,8 +313,57 @@ function loadHead(){
     }
 }
 
+// carrega as configurações do json
+function loadOptions(){
+    
+    if(Object.entries(jsonData['config']).length > 0){
+        console.log('entrou');
+        console.log(Object.entries(jsonData['config']).length);
+        mostrarMatriasCursadas = jsonData['config']['mostrarMatriasCursadas']
+        mostrarMediaGeral = jsonData['config']['mostrarMediaGeral']
+        mostrarProgressao = jsonData['config']['mostrarProgressao']
+        style = jsonData['config']['style'].toString()
+        console.log(style);
+        
+
+        corFundo = jsonData['config']['corFundo']
+        document.getElementById('body').style.backgroundColor = corFundo
+        
+        corCard = new SVG.Color(jsonData['config']['corCard'])
+        corBorda = new SVG.Color(jsonData['config']['corCard'])
+
+        corCardHover = new SVG.Color(jsonData['config']['corCardHover'])
+        corBordaHover = new SVG.Color(jsonData['config']['corLinhas'])
+
+        corCardDesfoco = new SVG.Color(jsonData['config']['corCard'])
+        corBordaDesfoco = new SVG.Color(jsonData['config']['corCard'])
+
+        corCardDependente = new SVG.Color(jsonData['config']['corCardHover'])
+        corBordaDependente = new SVG.Color(jsonData['config']['corLinhas'])
+
+        corCradCursado = new SVG.Color(jsonData['config']['corCradCursado'])
+        corBordaCursado = new SVG.Color(jsonData['config']['corCradCursado'])
+
+        corLinhas = new SVG.Color(jsonData['config']['corLinhas'])
+        corTexto = new SVG.Color(jsonData['config']['corTexto'])
+        
+        alterModeColor()
+        clearHead()
+        loadHead()
+
+    }else{
+        loadHead()
+    }
+
+    loadConfig()
+    
+}
+
 // Cria a interface baseado no jsonData
 function load(){
+
+    
+    loadOptions()
     
     
     var random = pseudoAleatorios(seed)
@@ -337,7 +412,7 @@ function load(){
             cards.push(card)
         }
     }
-    loadHead()
+    // loadHead()
     showNames()
 
 }

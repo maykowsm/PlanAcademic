@@ -17,10 +17,23 @@ function openMenu(){
     }
 }
 
-// altera o modo de cor (dark-ligth)
-function alterModeColor(){
+function keyModeColor(){
+    console.log(style);
     if(style == 'dark'){
         style = 'light'
+    }else{
+        style = 'dark'
+    }
+
+    console.log(style);
+
+    alterModeColor()
+    loadConfig()   
+}
+
+// altera o modo de cor (dark-ligth)
+function alterModeColor(){
+    if(style == 'light'){
         document.getElementById('img-style').src = 'img/style-light.svg'
         document.getElementById('folha-estilo').href = 'styles/css_light.css'
         document.getElementById('btn-voltar-config').src = 'img/arrow_back_black.svg'
@@ -33,7 +46,6 @@ function alterModeColor(){
         document.getElementById('img_question').src = 'img/question_black.svg'
         document.getElementById('btn-voltar-materia').src = 'img/close_black.svg'
     }else{
-        style = 'dark'
         document.getElementById('img-style').src = 'img/style-dark.svg'
         document.getElementById('folha-estilo').href = 'styles/css_dark.css'
         document.getElementById('btn-voltar-config').src = 'img/arrow_back_white.svg'
@@ -44,9 +56,9 @@ function alterModeColor(){
         document.getElementById('img_settings').src = 'img/settings_white.svg'
         document.getElementById('img_question').src = 'img/question_white.svg'
         document.getElementById('btn-voltar-materia').src = 'img/close_white.svg'
-    }
-
-    loadConfig()
+    }  
+    
+    
 }
 
 // carrega os parametros na janela de configuração
@@ -144,8 +156,7 @@ function alteraCor(id_input, id_div){
         corBordaHover = new SVG.Color(document.getElementById(id_input).value)
 
     }else if(id_input == 'color_texto'){
-        nomeCurso = ''
-        listSemestres.forEach(texto=>{ texto.remove()})
+        clearHead()
         corTexto = new SVG.Color(document.getElementById(id_input).value)
         loadHead()
         
@@ -261,7 +272,13 @@ function openConfig(){
 function closeConfig(){
     document.getElementById('configuracao').classList.add('slideOut_config')
     document.getElementById('configuracao').style.transform = 'translateX(-1000px)'
-    setTimeout(function(){document.getElementById('configuracao').classList.remove('slideOut_config'); document.getElementById('configuracao').style.display = 'none'}, 1000)
+    setTimeout(function(){
+        document.getElementById('configuracao').classList.remove('slideOut_config'); 
+        document.getElementById('configuracao').style.display = 'none'
+    }, 1000)
+
+    clearHead()
+    loadHead()
     
 }
 

@@ -27,7 +27,7 @@
             </button>
             <input oninput="carregarArquivo()" id="inputArquivo" type="file" accept=".json" hidden>
 
-            <button  class="buttonMenuSup opcaoMenu" title="Salvar arquivo" style="display: none;" >                
+            <button  onclick="save()" class="buttonMenuSup opcaoMenu" title="Salvar arquivo" style="display: none;" >                
                 <img id="img_save" style="cursor: pointer; height: 25px;" src="img/save_white.svg">
             </button>
 
@@ -93,7 +93,7 @@
                     </tr>
                     <tr>
                         <td>Tema:</td>
-                        <td class="entrada"><img id="img-style" src="img/style-dark.svg" style="height: 30px; cursor: pointer;" onclick="alterModeColor()"></td>
+                        <td class="entrada"><img id="img-style" src="img/style-dark.svg" style="height: 30px; cursor: pointer;" onclick="keyModeColor()"></td>
                     </tr>
                     <tr>
                         <td>Fundo:</td>
