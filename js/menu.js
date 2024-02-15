@@ -262,6 +262,7 @@ function closeMateria(){
 
 //abre a janela de configuração
 function openConfig(){
+    loadConfig()
     document.getElementById('configuracao').classList.add('slideIn_config')
     document.getElementById('configuracao').style.display = 'block'
     document.getElementById('configuracao').style.transform = 'translateX(0px)'
