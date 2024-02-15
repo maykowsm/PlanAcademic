@@ -96,7 +96,7 @@ body{
     color: white;
     background-color: black;
     box-shadow: 0px 0px 30px rgb(44, 44, 44);
-    transform: translateX(-600px);
+    transform: translateX(-1000px);
 }
 
 .slideIn_config{

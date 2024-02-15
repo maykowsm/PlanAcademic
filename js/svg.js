@@ -348,8 +348,8 @@ function loadOptions(){
         corTexto = new SVG.Color(jsonData['config']['corTexto'])
         
         alterModeColor()
-        clearHead()
-        loadHead()
+        // clearHead()
+        // loadHead()
 
     }else{
         loadHead()
@@ -412,7 +412,7 @@ function load(){
             cards.push(card)
         }
     }
-    // loadHead()
+    loadHead()
     showNames()
 
 }
