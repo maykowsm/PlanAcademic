@@ -390,8 +390,6 @@ function load(){
         for(let j = 0; j< materias.length; j++){
             card = canva.rect(largura, altura)
             card.move((i+1)*espacamento_x + i*largura + recuoLateral, recuoSuperior + (j+1)*espacamento_y + j*altura)
-            card.fill(corCard)
-            card.radius(raio)
             card.data({semestre: materias[j]['semestre'],
                         id: materias[j]['id'],
                         ch: materias[j]['ch'],
@@ -403,6 +401,14 @@ function load(){
                         professor: materias[j]['professor'],
                         anotacoes: materias[j]['anotacoes']
                     })
+            
+            if(card.data('cursada')){
+                card.fill(corCradCursado)
+            }else{
+                card.fill(corCard)
+            }
+            
+            card.radius(raio)
             
             card.click(function(){
                 cardSelecionado = this
@@ -460,7 +466,14 @@ function showLines(){
 //Verifica se o mouse inside sobre o card e altera sua visualização
 function insideCard(X, Y){
     cards.forEach(card=>{
-        card.attr({fill: corCardDesfoco, stroke: corBordaDesfoco, opacity: opacidadeDesfoco})
+        if(card.data('cursada')){
+            // card.fill(corCradCursado)
+            card.attr({fill: corCradCursado, stroke: corCradCursado, opacity: opacidadeDesfoco})
+        }else{
+            card.attr({fill: corCardDesfoco, stroke: corBordaDesfoco, opacity: opacidadeDesfoco})
+        }
+
+        // card.attr({fill: corCardDesfoco, stroke: corBordaDesfoco, opacity: opacidadeDesfoco})
         let textCard = getText(card.data('id'))
         textCard.opacity(0.2).fill(corTexto)
     })
@@ -493,8 +506,12 @@ function mouseMove(event){
     insideCard(event.clientX, event.clientY)
 
     if(event.clientY > 8 * altura + recuoSuperior || event.clientY < recuoSuperior){
-        cards.forEach(card=>{            
-            card.attr({fill: corCard, stroke: corBorda, opacity: opacidade})            
+        cards.forEach(card=>{ 
+            if(card.data('cursada')){
+                card.attr({fill: corCradCursado, stroke: corCradCursado, opacity: opacidade}) 
+            }else{
+                card.attr({fill: corCard, stroke: corBorda, opacity: opacidade}) 
+            }            
             textCard = getText(card.data('id'))
             textCard.opacity(1).fill(corTexto) 
         })
