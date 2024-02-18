@@ -13,7 +13,6 @@ Antes de começar você precisa baixar um arquivo json correspondente à sua gra
 
 Caso não exista nenhum arquivo corrrespondente a sua instituição e curço, siga as instruçãoes [aqui](#) de como gerar o json com base em sua grade curricular.
 
-
 Com o arquivo json em seu computador acesse a [plataforma](https://maykowsm.github.io/PlanAcademic/) e na janela que se abre (janela de boas vindas) faça o upload do arquivo arrastando-o para a área demarcada ou clicando sobre ela.
 ![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/upload%20Arquivo.png)
 
@@ -56,8 +55,9 @@ Seque imagens de algumas idéias.
 ![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/modelo-4.png)
 ![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/modelo-5.png)
 
-
-
-
 ### Ajuda
 O botão de ajuda o redirecionará para esta página.
+
+## Como gerar o json
+
+
