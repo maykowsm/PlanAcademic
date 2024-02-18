@@ -31,7 +31,7 @@ function gerarJson(file){
                     materia['semestre'] =  parseInt(materia['semestre'])
                     materia['cursada'] = false
                     materia['cursando'] = false
-                    materia['notaFinal'] = -1
+                    materia['notaFinal'] = 0
                     materia['professor'] = ''
                     materia['anotacoes'] = ''
                     curso['materias'][materia['id']] = materia
