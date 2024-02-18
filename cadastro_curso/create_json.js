@@ -14,33 +14,74 @@ var curso = {
 
 
 
+function gerarJson(file){
+    console.log('ok1');
+    return new Promise((resolve, reject) => {
+        console.log('ok2');
+        var reader = new FileReader
+        reader.readAsText(file)
+        reader.onload = function(event){
+            try{
+                var csv = event.target.result
+                var data = $.csv.toObjects(csv)
+                console.log('ok3');
+                data.forEach(materia => {
+                    materia['ch'] =  parseInt(materia['ch'])
+                    materia['id'] =  parseInt(materia['id'])
+                    materia['semestre'] =  parseInt(materia['semestre'])
+                    materia['cursada'] = false
+                    materia['cursando'] = false
+                    materia['notaFinal'] = -1
+                    materia['professor'] = ''
+                    materia['anotacoes'] = ''
+                    curso['materias'][materia['id']] = materia
+                });
+                console.log('ok4');
+        
+                console.log(curso); 
+                resolve(curso)               
+            }catch{
+                console.log('erro ao gerar json');
+                reject('erro ao gerar json')
+            }
+        }
+    })
 
+}
 
-function gerarJson(){
-    const files = document.getElementById('arquivo').files
-
-    var reader = new FileReader()
-    reader.readAsText(files[0])
-    reader.onload = function(event){
-        var csv = event.target.result
-        var data = $.csv.toObjects(csv)
-
-        data.forEach(materia => {
-            materia['ch'] =  parseInt(materia['ch'])
-            materia['id'] =  parseInt(materia['id'])
-            materia['semestre'] =  parseInt(materia['semestre'])
-            materia['cursada'] = false
-            materia['cursando'] = false
-            materia['notaFinal'] = -1
-            materia['professor'] = ''
-            materia['anotacoes'] = ''
-            curso['materias'][materia['id']] = materia
-        });
-
-        console.log(curso);
-    }
+async function loadFile(){
+    const file = document.getElementById('arquivo').files[0]
+    curso = await gerarJson(file)
     document.getElementById('ico_upload').innerText = 'check'
 }
+
+
+// function gerarJson(){
+//     const files = document.getElementById('arquivo').files
+
+//     var reader = new FileReader()
+//     reader.readAsText(files[0])
+//     reader.onload = function(event){
+//         var csv = event.target.result
+//         var data = $.csv.toObjects(csv)
+
+//         data.forEach(materia => {
+//             materia['ch'] =  parseInt(materia['ch'])
+//             materia['id'] =  parseInt(materia['id'])
+//             materia['semestre'] =  parseInt(materia['semestre'])
+//             materia['cursada'] = false
+//             materia['cursando'] = false
+//             materia['notaFinal'] = -1
+//             materia['professor'] = ''
+//             materia['anotacoes'] = ''
+//             curso['materias'][materia['id']] = materia
+//         });
+
+//         console.log(curso);
+//     }
+    
+//     document.getElementById('ico_upload').innerText = 'check'
+// }
 
 function dowloadFile(){
     var nome_curso = document.getElementById('curco').value

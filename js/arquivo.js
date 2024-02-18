@@ -14,7 +14,7 @@ var json = {
 }
 
 
-//fa z a leitura do aruivo json
+//faz a leitura do aruivo json
 function leArquivo(file){
     closeBoasVindas()
     return new Promise((resolve, reject)=>{
