@@ -46,8 +46,16 @@ Salva todas as alterações feitas no json e faz o dawload do mesmo em sua máqu
 
 ### Configurações
 ![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/configura%C3%A7%C3%B5es.png)
+
 Abre uma janela de configurações que permite configurar o comportamento da plataforma, bem como alterar o tema e modificar as cores de todos os elementos em tela, o que permite um alto nível de personalização.
 Seque imagens de algumas idéias.
+
+![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/modelo-1.png)
+![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/modelo-2.png)
+![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/modelo-3.png)
+![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/modelo-4.png)
+![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/modelo-5.png)
+
 
 
 
