@@ -15,14 +15,13 @@ Caso não exista nenhum arquivo corrrespondente a sua instituição e curço, si
 
 
 Com o arquivo json em seu computador acesse a [plataforma](https://maykowsm.github.io/PlanAcademic/) e na janela que se abre (janela de boas vindas) faça o upload do arquivo arrastando-o para a área demarcada ou clicando sobre ela.
-
 ![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/upload%20Arquivo.png)
 
 Ao carregar o arquivo o organograma será gerado automaticamente com todas as interdependencia entre matérias em seus respectivos semestres.
-![](#)
+![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/Organograma.png)
 
 Ao passar o mouse sobre uma matéria será exibido as conecxões de dependencias com as demais materias.
-![](#)
+![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/met%C3%A9rias.png)
 
 Ao Clicar sobre uma matéria será exibido uma janela contendo o nome da matéria, semestre da qual pertence, carga horária, status referente a se a matéria já foi cursada, ou se está sendo cursada, um capos para definir nome do professor, nota final e anotações. Para salvar qualquer alteração nos campos serão salvas ao fechar a janela.
 
@@ -32,7 +31,10 @@ Ao Clicar sobre uma matéria será exibido uma janela contendo o nome da matéri
 Do lado esquerdo é exibido um menu coma as seguintes opções:
 * 1 - Upload
 * 2 - Salvar
-* 3 - Configurações - 
+* 3 - Configurações
+* 4 - Ajuda
+
+![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/menu.png)
 
 O funcionamento de cada uma dessas opções será melhor explicado na sequencia.
 
@@ -43,6 +45,11 @@ Faz Upload de um arquivo json previamente configurado (mesma função da janela 
 Salva todas as alterações feitas no json e faz o dawload do mesmo em sua máquina. (OBS: A plataforma não salva nehuma informação online, todas as inforrmações são salvas esclusivamente no json em sua máquina, portanto a cada uso da plataforma aconselhamos fazer o salvamento do mesmo para que não haja perca de dados, lembrese também de sempre fazer o upload do arquivo json mais recente para a plataforma.)
 
 ### Configurações
+![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/configura%C3%A7%C3%B5es.png)
 Abre uma janela de configurações que permite configurar o comportamento da plataforma, bem como alterar o tema e modificar as cores de todos os elementos em tela, o que permite um alto nível de personalização.
 Seque imagens de algumas idéias.
-![](#)
+
+
+
+### Ajuda
+O botão de ajuda o redirecionará para esta página.
