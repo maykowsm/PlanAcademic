@@ -23,10 +23,10 @@ Ao carregar o arquivo o organograma será gerado automaticamente com todas as in
 Ao passar o mouse sobre uma matéria será exibido as conecxões de dependencias com as demais materias.
 ![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/met%C3%A9rias.png)
 
-Ao Clicar sobre uma matéria será exibido uma janela contendo o nome da matéria, semestre da qual pertence, carga horária, status referente a se a matéria já foi cursada, ou se está sendo cursada, um capos para definir nome do professor, nota final e anotações. Para salvar qualquer alteração nos campos serão salvas ao fechar a janela.
+Ao Clicar sobre uma matéria será exibido uma janela contendo o nome da matéria, semestre da qual pertence, carga horária, status referente a se a matéria já foi cursada, ou se está sendo cursada, um capos para definir nome do professor, nota final e anotações. Qualquer alteração nos campos será salvo ao fechar a jenala.
 
-![](#)
-![](#)
+![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/janela_mat%C3%A9ria.png)
+
 
 Do lado esquerdo é exibido um menu coma as seguintes opções:
 * 1 - Upload
