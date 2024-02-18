@@ -33,7 +33,11 @@ function keyModeColor(){
 
 // altera o modo de cor (dark-ligth)
 function alterModeColor(){
+
+    
+    clearHead()
     if(style == 'light'){
+        corTexto =  new SVG.Color('#000000')
         document.getElementById('img-style').src = 'img/style-light.svg'
         document.getElementById('folha-estilo').href = 'styles/css_light.css'
         document.getElementById('btn-voltar-config').src = 'img/arrow_back_black.svg'
@@ -46,6 +50,7 @@ function alterModeColor(){
         document.getElementById('img_question').src = 'img/question_black.svg'
         document.getElementById('btn-voltar-materia').src = 'img/close_black.svg'
     }else{
+        corTexto =  new SVG.Color('#ffffff')
         document.getElementById('img-style').src = 'img/style-dark.svg'
         document.getElementById('folha-estilo').href = 'styles/css_dark.css'
         document.getElementById('btn-voltar-config').src = 'img/arrow_back_white.svg'
@@ -56,9 +61,12 @@ function alterModeColor(){
         document.getElementById('img_settings').src = 'img/settings_white.svg'
         document.getElementById('img_question').src = 'img/question_white.svg'
         document.getElementById('btn-voltar-materia').src = 'img/close_white.svg'
-    }  
-    
-    
+    } 
+    loadHead()
+
+    //altera a cor do fundo    
+    div = document.getElementById('body')
+    corFundo =  div.style.backgroundColor    
 }
 
 // carrega os parametros na janela de configuração
