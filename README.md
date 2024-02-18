@@ -11,7 +11,7 @@ O projeto está em constante evolução e divesas funcionalidades ainda serão i
 ## Como usar
 Antes de começar você precisa baixar um arquivo json correspondente à sua grade curricular neste link: [https://github.com/maykowsm/PlanAcademic/tree/main/cadastro_curso/JSON](https://github.com/maykowsm/PlanAcademic/tree/main/cadastro_curso/JSON) , os arquivos estão classificadso por instituição e curço. 
 
-Caso não exista nenhum arquivo corrrespondente a sua instituição e curço, siga as instruçãoes [aqui](#) de como gerar o json com base em sua grade curricular.
+Caso não exista nenhum arquivo corrrespondente a sua instituição e curço, siga as instruçãoes [aqui](https://github.com/maykowsm/PlanAcademic/blob/main/README.md#como-gerar-o-json) de como gerar o json com base em sua grade curricular.
 
 Com o arquivo json em seu computador acesse a [plataforma](https://maykowsm.github.io/PlanAcademic/) e na janela que se abre (janela de boas vindas) faça o upload do arquivo arrastando-o para a área demarcada ou clicando sobre ela.
 ![](https://github.com/maykowsm/PlanAcademic/blob/main/img/img_readme/upload%20Arquivo.png)
