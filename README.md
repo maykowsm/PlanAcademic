@@ -59,5 +59,18 @@ Seque imagens de algumas idéias.
 O botão de ajuda o redirecionará para esta página.
 
 ## Como gerar o json
+Se você não encontrou seu curso e instituição na [lista](https://github.com/maykowsm/PlanAcademic/tree/main/cadastro_curso/JSON) você pode gerar você mesmo um json para seu curso, segue o passo a passo.
 
+* 1 - Crie uma planilha com todas as disciplinas de sua grade curricular, a planilha deve contemplar as seguintes colunas.
+  * Semestre - Semestre a qual a disciplina pertence;
+  * Id - Numero de identificação da disciplina (valor numérico incrementado de 1 a cada disciplina), este id servirá para facilitar o processamento dos dados na plataforma;
+  * Carga Horária - Carga horária da disciplina;
+  * Nome da matéria - Nome da disciplina;
+  * Dependencias - Id das matérias que são pré-requisito para a disciplina em questão, caso a disciplina possua dois ou mais pré-requisitos os Ids devem ser separados por um "-", exemplo: 10-16, não adicione espaçõs ou qualquer outro caractere entre eles.
+ 
+Segue uma imagem de como deve ser o cabeçalho da planilha.
+
+Segue uma imagem de como deve ser escrito as dependencias caso haja mais de dois pré-requisitos para uma mesma disciplina.
+
+* 2 - Salve a planilha como um arquivo CSV
 
