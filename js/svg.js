@@ -64,6 +64,11 @@ var corCradCursado = new SVG.Color( '#927c00')
 var corBordaCursado = new SVG.Color( '#927c00')
 var opacidadeCursado = 1
 
+//cursando
+var corCradCursando = new SVG.Color( 'rgb( 65, 76, 11)')
+var corBordaCursando = new SVG.Color( 'rgb( 65, 76, 11)')
+var opacidadeCursando = 1
+
 
 
 //estilos das linhas e pontos ------------------------------------
@@ -347,6 +352,22 @@ function loadOptions(){
         corLinhas = new SVG.Color(jsonData['config']['corLinhas'])
         corTexto = new SVG.Color(jsonData['config']['corTexto'])
         
+        // cores adicionadas posteriormente ao lançamento da pltaforma
+        if(jsonData['config']['corCradCursando']){
+            corCradCursando = new SVG.Color(jsonData['config']['corCradCursando'])
+            corBordaCursando = new SVG.Color(jsonData['config']['corCradCursando'])
+        }
+        
+        // try{
+        //     console.log('carregou as configurações');
+        //     corCradCursando = new SVG.Color(jsonData['config']['corCradCursando'])
+        //     corBordaCursando = new SVG.Color(jsonData['config']['corCradCursando'])
+        // }catch{
+        //     corCradCursando = new SVG.Color( 'rgb( 67, 146, 0)')
+        //     corBordaCursando = new SVG.Color( 'rgb( 67, 146, 0)')
+        //     opacidadeCursando = 1
+        // }
+        
         alterModeColor()
         // clearHead()
         // loadHead()
@@ -404,6 +425,8 @@ function load(){
             
             if(card.data('cursada')){
                 card.fill(corCradCursado)
+            }else if(card.data('cursando')){
+                card.fill(corCradCursando)
             }else{
                 card.fill(corCard)
             }
@@ -465,10 +488,13 @@ function showLines(){
 
 //Verifica se o mouse inside sobre o card e altera sua visualização
 function insideCard(X, Y){
+    //varre os cards e reduz a sua opacidade
     cards.forEach(card=>{
         if(card.data('cursada')){
             // card.fill(corCradCursado)
             card.attr({fill: corCradCursado, stroke: corCradCursado, opacity: opacidadeDesfoco})
+        }else if(card.data('cursando')){
+            card.attr({fill: corCradCursando, stroke: corCradCursando, opacity: opacidadeDesfoco}) 
         }else{
             card.attr({fill: corCardDesfoco, stroke: corBordaDesfoco, opacity: opacidadeDesfoco})
         }
@@ -505,10 +531,13 @@ function mouseMove(event){
     console.log('mouseMove');
     insideCard(event.clientX, event.clientY)
 
+    //varre os cards deixando os na opacidade normal
     if(event.clientY > 8 * altura + recuoSuperior || event.clientY < recuoSuperior){
         cards.forEach(card=>{ 
             if(card.data('cursada')){
                 card.attr({fill: corCradCursado, stroke: corCradCursado, opacity: opacidade}) 
+            }else if(card.data('cursando')){
+                card.attr({fill: corCradCursando, stroke: corCradCursando, opacity: opacidade}) 
             }else{
                 card.attr({fill: corCard, stroke: corBorda, opacity: opacidade}) 
             }            

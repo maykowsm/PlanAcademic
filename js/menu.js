@@ -132,6 +132,9 @@ function loadConfig(){
     document.getElementById('circulo_color_texto').style.backgroundColor = corTexto.toHex()
     document.getElementById('color_texto').value = corTexto.toHex()
 
+    document.getElementById('circulo_card_cursando').style.backgroundColor = corCradCursando.toHex()
+    document.getElementById('card_cursando').value = corCradCursando.toHex()
+
     
 }
 
@@ -168,6 +171,9 @@ function alteraCor(id_input, id_div){
         corTexto = new SVG.Color(document.getElementById(id_input).value)
         loadHead()
         
+    }else if(id_input == 'card_cursando'){
+        corCradCursando = new SVG.Color(document.getElementById(id_input).value)
+        bordaCursando = new SVG.Color(document.getElementById(id_input).value)
     }
 }
 

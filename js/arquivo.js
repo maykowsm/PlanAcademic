@@ -86,6 +86,7 @@ function save(){
     json['config']['corCradCursado'] = corCradCursado.toHex()
     json['config']['corLinhas'] = corLinhas.toHex()
     json['config']['corTexto'] = corTexto.toHex()
+    json['config']['corCradCursando'] = corCradCursando.toHex()
     
 
     
